@@ -1,0 +1,44 @@
+1. download jdk 21
+
+https://www.oracle.com/java/technologies/downloads/#java21
+
+2. install the jdk once downloaded
+
+3. set the environment variable  
+
+
+
+
+            variable  Name :   JAVA_HOME
+            value          :C:\Program Files\Java\jdk-21
+
+4 . add to path variable 
+
+    %JAVA_HOME%\bin
+
+
+
+            
+
+1. for kafka   https://kafka.apache.org/downloads
+
+2.in that supported releases 3.9.0 got binary downloads
+scala 2.13 kafka_2.13-3.9.0.tgz  then download and extract
+
+3.paste the file in c: drive open and check .sh files and windows .bat files
+
+4.now we have to go c:\kafka\config\server and c:\kafka\config\zookeeper
+open these two properties file with notepad
+in server.properties there goto logs and in the place of tmp use the path as c:\kafka\kafka-logs
+save it close
+
+now goto zookeeper.properties change into dataDir=C:/kafka/zookeeper-data
+
+
+now to start zookeeper goto c:\kafka>
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+use the above command to run the zookeeper
+
+now to start kadka server goto c:\kafka>
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
