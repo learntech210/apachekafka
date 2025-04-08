@@ -1,0 +1,98 @@
+1.After successful running of both the servers now
+goto the path kafka->bin->windows
+
+2.In the above path we can see producers and consumers batch files.
+
+3.Open the command prompt kafka->bin->windows path.
+
+4.Here we need to create a topic by using the following command and you will the message after successful creation as created topic test.test is the name of 
+the topic.
+
+C:\kafka\bin\windows>kafka-topics.bat --create --bootstrap-server localhost:9092 --topic test
+Created topic test.
+
+5.
+
+C:\kafka\bin\windows>kafka-console-producer.bat --broker-list localhost:9092 --topic test
+>
+
+
+for consumer function
+C:\kafka\bin\windows>kafka-console-consumer.bat --topic test --bootstrap-server localhost:9092 --from-beginning
+
+
+now whatever you type in producer command prompt that will reflects in consumers window.
+
+
+In notepad create some JSON data
+{"Name:"john", "age":"31","Gender":"Male"}
+{"Name:"sree", "age":"39","Gender":"female"}
+{"Name:"rama", "age":"38","Gender":"Male"}
+{"Name:"krishna", "age":"41","Gender":"Male"}
+
+
+topic operations:-
+to list all topics:
+kafka-topics.bat --list --bootstrap-server localhost:9092
+
+to describe a topic:
+kafka-topics.sh --describe --bootstrap-server localhost:9092 --topic mytp1
+
+to delete a topic (dont try it):-
+kafka-topics.bat --describe --bootstrap-server localhost:9092 --topic mytp1
+
+from beginning:-
+create a topic in one window
+kafka-topics.bat --create --bootstrap-server localhost:9092 --topic sritp1
+
+create producer in another window
+kafka-console-producer.bat --broker-list localhost:9092 --topic sritp1
+(add some data)
+
+create a consumer console in another window
+kafka-console-consumer.bat --topic sritp1 --bootstrap-server localhost:9092
+
+create a another consumer console in another window
+kafka-console-consumer.bat --topic sritp1 --bootstrap-server localhost:9092 --from-beginning
+again add data in producer & see difference.
+
+now to read the data from the middle:
+kafka-console-consumer.bat --topic sritp1 --bootstrap-server localhost:9092 --offset 4 --partition 0
+
+note:-from the offset 4 its starting and to end and also we need to add partition  as 0 (the default partition)
+
+
+In order to share unique data bu each consumer in kafka we need to create consumer groups.
+kafka-console-consumer.bat --topic sritp1 --bootstrap-server localhost:9092 --group G1 
+note: Create it for 3 consumers and check.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
