@@ -1,0 +1,12 @@
+https://www.redpanda.com/guides/kafka-tutorial
+https://learn.conduktor.io/kafka/kafka-topics-cli-tutorial/
+https://medium.com/javarevisited/kafka-partitions-and-consumer-groups-in-6-mins-9e0e336c6c00
+https://lukianovihor.medium.com/kafka-cli-basic-commands-bb55449d1cb0
+https://medium.com/@TimvanBaarsen/apache-kafka-cli-commands-cheat-sheet-a6f06eac01b#8198
+https://www.confluent.io/get-started/
+
+
+
+
+
+

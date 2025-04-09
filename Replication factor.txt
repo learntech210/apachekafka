@@ -17,6 +17,29 @@ kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic abc1 --form
 to create a group
 kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic abc1 --group g3
 
+
+to describe group
+kafka-consumer-groups.bat --bootstrap-server localhost:9092 --describe --group my-first-application
+
+kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --to-earliest --execute --topic first_topic
+
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic first_topic --group my-first-application
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 to list the group
 kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic abc1 --group g3
 
