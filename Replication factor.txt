@@ -1,0 +1,58 @@
+Replication factor
+In Kafka, the replication factor determines the number of copies of a topic's partitions stored across the cluster, enhancing data durability and availability by allowing the system to tolerate broker failures. 
+
+The replication factor specifies how many replicas (copies) of each partition of a topic will exist within the Kafka cluster. 
+
+windows power shell
+wsl --install
+for unix or Linux environment
+
+
+to add topics partiions after creation of the topic
+kafka-topics.bat --bootstrap-server localhost:9092 --alter --topic abc1 --partitions 10
+
+to check partition details
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic abc1 --formatter kafka.tools.DefaultMessageFormatter --property print.timestamp=true --property print.key=true --property print.value=true --property print.partition=true --from-beginning
+
+to create a group
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic abc1 --group g3
+
+to list the group
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic abc1 --group g3
+
+dry run and execute options
+
+To read data from Kafka, you may need different strategies. A useful way to do this is by performing a dry-run option to reset to the beginning of each partition and execute to run the command. Once this is done, you can read all the data from the first offset. This process can be better understood when writing and using consumers.
+
+kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group g3 --reset-offsets --to-earliest --topic abc1 --dry-run
+kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group g3 --reset-offsets --to-earliest --topic abc1 --execute
+
+note : Assignments can only be reset if the group 'g3' is inactive, but the current state is Stable.
+
+
+To send messages in a key-value format, use properties parse.key and key.separator.
+kafka-console-producer.bat --bootstrap-server localhost:9092 --topic abc1 --property parse.key=true --property key.separator=:
+
+
+the special class is used for the partitioner — the Round Robin Partitioner. From the documentation we can notice that:
+
+This partitioning strategy can be used when the user wants to distribute the writes to all partitions equally.
+
+kafka-console-producer.bat --bootstrap-server localhost:9092 --producer-property partitioner.class=org.apache.kafka.clients.producer.RoundRobinPartitioner --topic abc1
+
+
+By adding a new group parameter and the name of our first group in the kafka-console-consumer command, we can easily spread messages among consumers in it. However, as of now, there won’t be any visible differences as it will work like the previous examples. To spread messages among this group, we need to create another consumer by executing the same command.
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic abc1 --group g4
+
+kafka-consumer-groups
+ we have a distinct command that enables us to work with consumer groups. Initially, let’s list all the available groups. Since we have used only one group, it will be the output.
+
+Moreover, there is another crucial option that we are already familiar with from the kafka-topics command, which is describe. Let’s use this option as well to check the output for the consumer group.
+kafka-consumer-groups.bat --bootstrap-server localhost:9092 --list
+kafka-consumer-groups.bat --bootstrap-server localhost:9092 --describe --group g4
+
+
+
+
+
+
